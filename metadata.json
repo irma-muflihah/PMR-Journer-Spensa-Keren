@@ -1,0 +1,6 @@
+{
+  "name": "PMR Journey - Portal Edukasi PMR Madya Kontingen Merak SMPN 1 Kemranjen",
+  "description": "Portal terpadu PMR Journey: Panel Materi (PRS, PP, Kepalangmerahan), Panel Permainan (Petualangan Rimba Kunci Emas, Permainan PRS, Kepalangmerahan), dan Panel Tugas untuk PMR Madya SMP Negeri 1 Kemranjen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
