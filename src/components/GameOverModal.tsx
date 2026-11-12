@@ -1,18 +1,20 @@
 import React from 'react';
-import { RotateCcw, BookOpen, HeartCrack, AlertCircle } from 'lucide-react';
+import { RotateCcw, BookOpen, HeartCrack, AlertCircle, FolderUp } from 'lucide-react';
 
 interface GameOverModalProps {
   score: number;
   levelTitle: string;
   onRetry: () => void;
   onOpenPocketbook: () => void;
+  onOpenDriveOutput?: () => void;
 }
 
 export const GameOverModal: React.FC<GameOverModalProps> = ({
   score,
   levelTitle,
   onRetry,
-  onOpenPocketbook
+  onOpenPocketbook,
+  onOpenDriveOutput
 }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
@@ -48,6 +50,17 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
             <RotateCcw className="w-4 h-4" />
             <span>Coba Lagi Pos Ini</span>
           </button>
+
+          {onOpenDriveOutput && (
+            <button
+              type="button"
+              onClick={onOpenDriveOutput}
+              className="w-full py-2.5 px-4 rounded-2xl bg-teal-950/80 hover:bg-teal-900 text-amber-300 text-xs font-semibold flex items-center justify-center gap-2 border border-teal-600/40 transition-colors"
+            >
+              <FolderUp className="w-4 h-4" />
+              <span>Simpan / Kirim Rekap ke Google Drive Guru</span>
+            </button>
+          )}
 
           <button
             type="button"

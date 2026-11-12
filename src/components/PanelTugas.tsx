@@ -1,8 +1,15 @@
 import React from 'react';
-import { ClipboardList, ExternalLink, Sparkles, CheckSquare, Award, Clock, FileText, ArrowRight } from 'lucide-react';
+import { ClipboardList, ExternalLink, Sparkles, CheckSquare, Award, Clock, FileText, ArrowRight, FolderUp, Mail } from 'lucide-react';
 import { PeacockEmblem } from './PeacockEmblem';
 
-export const PanelTugas: React.FC = () => {
+interface PanelTugasProps {
+  onOpenDriveOutput?: () => void;
+}
+
+export const PanelTugas: React.FC<PanelTugasProps> = ({ onOpenDriveOutput }) => {
+  const teacherEmail = 'dinakirom29@guru.smp.belajar.id';
+  const driveUrl = `https://drive.google.com/drive/u/0/search?q=to:${encodeURIComponent(teacherEmail)}`;
+
   const tugasList = [
     {
       title: 'Tugas 1: Lembar Analisis Kasus Pertolongan Pertama (P3K)',
@@ -45,6 +52,49 @@ export const PanelTugas: React.FC = () => {
           <div className="shrink-0 hidden sm:block">
             <PeacockEmblem size={70} />
           </div>
+        </div>
+      </div>
+
+      {/* SPECIAL SECTION: Output Hasil ke Google Drive Guru */}
+      <div className="p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-slate-950 border-2 border-amber-400 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="space-y-1.5 max-w-xl">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 uppercase tracking-wider">
+              Google Drive Output
+            </span>
+            <span className="text-xs font-bold text-amber-300">
+              Pengumpulan Hasil Nilai & Tugas
+            </span>
+          </div>
+          <h3 className="text-base sm:text-lg font-bold text-slate-100">
+            Kirim Hasil Game & Laporan ke Google Drive Pembina
+          </h3>
+          <p className="text-xs text-slate-300 leading-relaxed">
+            Kumpulkan bukti penyelesaian petualangan P3K, jumlah bulu merak yang diraih, dan berkas tugas langsung ke Google Drive guru pembina: <strong className="text-amber-300 underline underline-offset-2">{teacherEmail}</strong>
+          </p>
+        </div>
+
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 w-full md:w-auto shrink-0">
+          {onOpenDriveOutput && (
+            <button
+              type="button"
+              onClick={onOpenDriveOutput}
+              className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all cursor-pointer"
+            >
+              <FolderUp className="w-4 h-4 fill-slate-950" />
+              <span>Tampilkan Output Hasil</span>
+            </button>
+          )}
+
+          <a
+            href={driveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span>Buka Google Drive</span>
+          </a>
         </div>
       </div>
 
@@ -91,7 +141,7 @@ export const PanelTugas: React.FC = () => {
             <li>Buka link <strong>dinaproject.netlify.app</strong> melalui tombol di atas.</li>
             <li>Pelajari materi ringkas sebelum mengerjakan kuis atau lembar kerja digital.</li>
             <li>Kerjakan setiap tugas dengan mengutamakan prinsip ketelitian dan nilai-nilai kemanusiaan Palang Merah.</li>
-            <li>Hasil evaluasi akan tercatat sebagai nilai portofolio Kontingen Merak SMPN 1 Kemranjen.</li>
+            <li>Hasil evaluasi dan sertifikat dapat dikirimkan ke Google Drive Pembina: <strong className="text-amber-300">{teacherEmail}</strong>.</li>
           </ol>
         </div>
 

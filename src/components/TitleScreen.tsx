@@ -147,7 +147,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
               Misi Penyelamatan Rimba PMR:
             </div>
             <p className="text-[11px] text-slate-300 leading-relaxed">
-              Jelajahi 5 Pos Hutan Nusantara. Jawab pertanyaan P3K Modul 2008 untuk melenyapkan rintangan & musuh, lalu kumpulkan <strong>5 Kunci Bulu Merak Bersinar</strong>!
+              Jelajahi 5 Pos Hutan Nusantara. Jawab pertanyaan P3K Modul 2008 untuk melenyapkan rintangan & musuh, raih <strong>5 Kunci Bulu Merak Bersinar</strong>, dan serahkan hasil ke Google Drive Pembina (<strong>dinakirom29@guru.smp.belajar.id</strong>)!
             </p>
           </div>
         </div>

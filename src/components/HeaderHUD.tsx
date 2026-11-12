@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Volume2, VolumeX, BookOpen, Sparkles, Award, ArrowLeft } from 'lucide-react';
+import { Heart, Volume2, VolumeX, BookOpen, Sparkles, Award, ArrowLeft, FolderUp } from 'lucide-react';
 
 interface HeaderHUDProps {
   currentLevel: number;
@@ -11,6 +11,7 @@ interface HeaderHUDProps {
   isMuted: boolean;
   onToggleSound: () => void;
   onOpenPocketbook: () => void;
+  onOpenDriveOutput?: () => void;
   onBackToPortal: () => void;
   onRestartLevel: () => void;
 }
@@ -25,6 +26,7 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
   isMuted,
   onToggleSound,
   onOpenPocketbook,
+  onOpenDriveOutput,
   onBackToPortal,
   onRestartLevel
 }) => {
@@ -78,8 +80,21 @@ export const HeaderHUD: React.FC<HeaderHUDProps> = ({
         </div>
       </div>
 
-      {/* Action Zone (Sound, Pocketbook) */}
+      {/* Action Zone (Drive Output, Pocketbook, Sound) */}
       <div className="flex items-center gap-1.5 shrink-0">
+        {/* Google Drive Output button */}
+        {onOpenDriveOutput && (
+          <button
+            type="button"
+            onClick={onOpenDriveOutput}
+            aria-label="Output Hasil ke Google Drive"
+            title="Output Hasil ke Google Drive Pembina (dinakirom29@guru.smp.belajar.id)"
+            className="w-7 h-7 rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 flex items-center justify-center border border-amber-500/50 transition-colors"
+          >
+            <FolderUp className="w-3.5 h-3.5" />
+          </button>
+        )}
+
         {/* Pocketbook */}
         <button
           type="button"

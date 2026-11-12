@@ -1,18 +1,22 @@
 import React from 'react';
-import { Gamepad2, Play, ExternalLink, Sparkles, Key, ShieldCheck, Trophy, Compass } from 'lucide-react';
+import { Gamepad2, Play, ExternalLink, Sparkles, Key, ShieldCheck, Trophy, Compass, FolderUp } from 'lucide-react';
 import { PeacockEmblem } from './PeacockEmblem';
 
 interface PanelPermainanProps {
   onLaunchPPGame: () => void;
+  onOpenDriveOutput?: () => void;
   highScore?: number;
   feathersUnlocked?: number;
 }
 
 export const PanelPermainan: React.FC<PanelPermainanProps> = ({
   onLaunchPPGame,
+  onOpenDriveOutput,
   highScore = 0,
   feathersUnlocked = 0
 }) => {
+  const teacherEmail = 'dinakirom29@guru.smp.belajar.id';
+
   return (
     <div className="space-y-6">
       {/* Panel Banner */}
@@ -35,6 +39,26 @@ export const PanelPermainan: React.FC<PanelPermainanProps> = ({
             <PeacockEmblem size={70} />
           </div>
         </div>
+      </div>
+
+      {/* QUICK GOOGLE DRIVE SUBMISSION BAR */}
+      <div className="p-3.5 bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-950 rounded-2xl border border-amber-400/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2">
+          <FolderUp className="w-4 h-4 text-amber-400 shrink-0" />
+          <span className="text-slate-200">
+            Output Nilai Game & Sertifikat dikirimkan ke Google Drive Pembina: <strong className="text-amber-300">{teacherEmail}</strong>
+          </span>
+        </div>
+        {onOpenDriveOutput && (
+          <button
+            type="button"
+            onClick={onOpenDriveOutput}
+            className="py-1.5 px-3.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/40 font-bold text-xs flex items-center gap-1.5 transition-colors shrink-0 cursor-pointer"
+          >
+            <FolderUp className="w-3.5 h-3.5" />
+            <span>Lihat Rekap Hasil Game</span>
+          </button>
+        )}
       </div>
 
       {/* 3 Permainan Cards */}

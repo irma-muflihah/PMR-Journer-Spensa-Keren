@@ -22,6 +22,7 @@ import { CertificateModal } from './components/CertificateModal';
 import { PocketBookModal } from './components/PocketBookModal';
 import { TitleScreen } from './components/TitleScreen';
 import { PeacockEmblem } from './components/PeacockEmblem';
+import { GoogleDriveOutputModal } from './components/GoogleDriveOutputModal';
 import { soundManager } from './utils/audio';
 
 type PortalTab = 'materi' | 'permainan' | 'tugas' | 'bukusaku';
@@ -55,6 +56,7 @@ export default function App() {
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [showPocketbook, setShowPocketbook] = useState<boolean>(false);
   const [pocketbookInitialTab, setPocketbookInitialTab] = useState<'dasar' | 'luka' | 'fraktur' | 'pingsan' | 'ular' | 'evakuasi' | 'online'>('dasar');
+  const [showDriveModal, setShowDriveModal] = useState<boolean>(false);
 
   // Active quiz encounter
   const [activeObstacle, setActiveObstacle] = useState<ObstacleEncounter | null>(null);
@@ -264,13 +266,16 @@ export default function App() {
             {activePortalTab === 'permainan' && (
               <PanelPermainan
                 onLaunchPPGame={handleLaunchPPGame}
+                onOpenDriveOutput={() => setShowDriveModal(true)}
                 highScore={score}
                 feathersUnlocked={collectedFeathers.length}
               />
             )}
 
             {/* TAB 3: PANEL TUGAS (Dina Project: dinaproject.netlify.app) */}
-            {activePortalTab === 'tugas' && <PanelTugas />}
+            {activePortalTab === 'tugas' && (
+              <PanelTugas onOpenDriveOutput={() => setShowDriveModal(true)} />
+            )}
           </main>
 
           {/* Portal Footer */}
@@ -337,6 +342,7 @@ export default function App() {
                   setPocketbookInitialTab('dasar');
                   setShowPocketbook(true);
                 }}
+                onOpenDriveOutput={() => setShowDriveModal(true)}
                 onBackToPortal={handleBackToPortal}
                 onRestartLevel={handleRetryLevel}
               />
@@ -422,6 +428,7 @@ export default function App() {
             setPocketbookInitialTab('dasar');
             setShowPocketbook(true);
           }}
+          onOpenDriveOutput={() => setShowDriveModal(true)}
         />
       )}
 
@@ -449,6 +456,16 @@ export default function App() {
         <PocketBookModal
           initialTab={pocketbookInitialTab}
           onClose={() => setShowPocketbook(false)}
+        />
+      )}
+
+      {/* Google Drive Output Modal (Direct output to dinakirom29@guru.smp.belajar.id) */}
+      {showDriveModal && (
+        <GoogleDriveOutputModal
+          cadet={cadet}
+          score={score}
+          feathersCount={collectedFeathers.length}
+          onClose={() => setShowDriveModal(false)}
         />
       )}
     </div>

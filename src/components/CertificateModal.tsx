@@ -1,7 +1,8 @@
-import React from 'react';
-import { Award, Printer, RotateCcw, Share2, Sparkles, CheckCircle, ExternalLink, Globe, Video } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, Printer, RotateCcw, Sparkles, CheckCircle, ExternalLink, Globe, Video, FolderUp, Mail, Copy, Check } from 'lucide-react';
 import { CadetProfile } from '../types/game';
 import { ONLINE_PORTALS } from '../data/learningResources';
+import { GoogleDriveOutputModal } from './GoogleDriveOutputModal';
 
 interface CertificateModalProps {
   cadet: CadetProfile;
@@ -16,6 +17,9 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   onPlayAgain,
   onOpenMediaHub
 }) => {
+  const [showDriveModal, setShowDriveModal] = useState<boolean>(false);
+  const teacherEmail = 'dinakirom29@guru.smp.belajar.id';
+
   const currentDate = new Date().toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'long',
@@ -125,6 +129,32 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           </div>
         </div>
 
+        {/* GOOGLE DRIVE OUTPUT CARD (Requested Feature) */}
+        <div className="p-3.5 bg-gradient-to-r from-emerald-950/90 via-teal-950 to-slate-950 rounded-2xl border-2 border-amber-400/80 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 uppercase tracking-wider">
+                Output Hasil Game
+              </span>
+              <span className="text-amber-300 font-semibold text-xs">
+                Kirim ke Google Drive Pembina
+              </span>
+            </div>
+            <p className="text-slate-300 text-[11px]">
+              Tampilkan dan serahkan rekap nilai ke Google Drive email: <strong className="text-amber-300">{teacherEmail}</strong>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setShowDriveModal(true)}
+            className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-md shrink-0 active:scale-95 transition-all cursor-pointer"
+          >
+            <FolderUp className="w-4 h-4 fill-slate-950" />
+            <span>Kirim Hasil ke Google Drive</span>
+          </button>
+        </div>
+
         {/* Next Steps: Online Portals & Video Links */}
         <div className="p-3 bg-slate-950/80 rounded-2xl border border-slate-800 space-y-2 text-xs">
           <div className="flex items-center justify-between">
@@ -186,6 +216,16 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Embedded Google Drive Output Modal */}
+      {showDriveModal && (
+        <GoogleDriveOutputModal
+          cadet={cadet}
+          score={score}
+          feathersCount={5}
+          onClose={() => setShowDriveModal(false)}
+        />
+      )}
     </div>
   );
 };

@@ -397,6 +397,33 @@ export const PocketBookModal: React.FC<PocketBookModalProps> = ({ onClose, initi
                 </h4>
 
                 <div className="grid grid-cols-1 gap-2.5">
+                  {/* Google Drive Card */}
+                  <div className="p-3 rounded-2xl bg-gradient-to-r from-emerald-950/90 to-teal-950 border border-amber-400/60 flex items-center justify-between gap-3 shadow-md">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold px-2 py-0.2 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                          Google Drive Pembina
+                        </span>
+                        <span className="font-bold text-xs sm:text-sm text-slate-100 truncate">
+                          Drive Pengumpulan Nilai & Tugas
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-amber-200/80 line-clamp-1 mt-0.5 font-mono">
+                        dinakirom29@guru.smp.belajar.id
+                      </p>
+                    </div>
+
+                    <a
+                      href={`https://drive.google.com/drive/u/0/search?q=to:${encodeURIComponent('dinakirom29@guru.smp.belajar.id')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-1.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold text-xs flex items-center gap-1 shrink-0 shadow-sm"
+                    >
+                      <span>Buka Drive</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+
                   {ONLINE_PORTALS.map(portal => (
                     <div
                       key={portal.id}
